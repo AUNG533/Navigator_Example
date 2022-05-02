@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
 
 class Page1 extends StatelessWidget {
   const Page1({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,9 +51,9 @@ class Page1 extends StatelessWidget {
   }
 }
 
-
 class Page2 extends StatelessWidget {
   const Page2({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,9 +63,9 @@ class Page2 extends StatelessWidget {
       body: Center(
         child: FlatButton(
           onPressed: () {
-           Navigator.pushNamed(context, '/page3');
+            Navigator.pushNamed(context, '/page3');
           },
-          child: Text("Back"),
+          child: Text("Page 3 ->"),
         ),
       ),
     );
@@ -73,6 +74,7 @@ class Page2 extends StatelessWidget {
 
 class Page3 extends StatelessWidget {
   const Page3({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,9 +84,9 @@ class Page3 extends StatelessWidget {
       body: Center(
         child: FlatButton(
           onPressed: () {
-            Navigator.popAndPushNamed(context, '/page4');
+            Navigator.pushNamed(context, '/page4');
           },
-          child: Text("Back"),
+          child: Text("Page 4 ->"),
         ),
       ),
     );
@@ -93,6 +95,7 @@ class Page3 extends StatelessWidget {
 
 class Page4 extends StatelessWidget {
   const Page4({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,12 +105,14 @@ class Page4 extends StatelessWidget {
       body: Center(
         child: FlatButton(
           onPressed: () {
-            // Navigator.pop(context);
+            // Navigator.pushNamedAndRemoveUntil(context, '/page1', (route) => false);
+            // Navigator.pushNamedAndRemoveUntil(
+            //     context, '/page4', ModalRoute.withName('/page1'));
+            Navigator.popUntil(context, ModalRoute.withName('/page2'));
           },
-          child: Text("Back"),
+          child: Text("Logout"),
         ),
       ),
     );
   }
 }
-
