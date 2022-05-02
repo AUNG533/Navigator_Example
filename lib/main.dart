@@ -1,5 +1,4 @@
 // ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,8 +11,8 @@ class MyApp extends StatelessWidget {
   final _route = <String, WidgetBuilder>{
     '/page1': (BuildContext context) => MyApp(),
     '/page2': (BuildContext context) => Page2(),
-    '/page3': (BuildContext context) => MyApp(),
-    '/page4': (BuildContext context) => MyApp(),
+    '/page3': (BuildContext context) => Page3(),
+    '/page4': (BuildContext context) => Page4(),
   };
 
   @override
@@ -31,7 +30,6 @@ class MyApp extends StatelessWidget {
 
 class Page1 extends StatelessWidget {
   const Page1({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,9 +39,11 @@ class Page1 extends StatelessWidget {
       body: Center(
         child: FlatButton(
           onPressed: () {
-            Navigator.pushNamed(context, '/page2');
+            // Navigator.pushNamed(context, '/page2');
+            Navigator.pushReplacementNamed(context, '/page2');
           },
-          child: Text("Next Page"),
+          //child: Text("Next Page"),
+          child: Text("Login"),
         ),
       ),
     );
@@ -53,7 +53,6 @@ class Page1 extends StatelessWidget {
 
 class Page2 extends StatelessWidget {
   const Page2({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,7 +62,47 @@ class Page2 extends StatelessWidget {
       body: Center(
         child: FlatButton(
           onPressed: () {
-            Navigator.pop(context);
+           Navigator.pushNamed(context, '/page3');
+          },
+          child: Text("Back"),
+        ),
+      ),
+    );
+  }
+}
+
+class Page3 extends StatelessWidget {
+  const Page3({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Page3"),
+      ),
+      body: Center(
+        child: FlatButton(
+          onPressed: () {
+            Navigator.popAndPushNamed(context, '/page4');
+          },
+          child: Text("Back"),
+        ),
+      ),
+    );
+  }
+}
+
+class Page4 extends StatelessWidget {
+  const Page4({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Page4"),
+      ),
+      body: Center(
+        child: FlatButton(
+          onPressed: () {
+            // Navigator.pop(context);
           },
           child: Text("Back"),
         ),
